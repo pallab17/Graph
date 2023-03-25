@@ -1,10 +1,24 @@
-
 //{ Driver Code Starts
 #include <bits/stdc++.h>
 using namespace std;
 
 // } Driver Code Ends
 class Solution {
+     /*
+    bfs
+    step 1--> front or u bole ekta variable niye setar modhe queue r first element ke store korbo
+    
+    step 2--> queue theke element take pop kore debo
+    (front r modhe jei element ta ache seta ke queue theke pop korar kotha bolchi)
+    
+    step 2.1--> ekta loop chaliye dilam front or u r adjacent element gulo r jonno 
+    
+    step 3--> visited array te giye element take true mark kore dilam
+    
+    step 4--> element take result array te push kore print kore dilam
+    
+    step 5--> first or u r modhe je element ta ache setar adjacency element gulo ke queue te push kore dilam
+    */
     
     void BFS( unordered_map<int, vector<int>> &adj,int u,vector<bool>&visited,vector<int>&result){
      queue<int>que;
