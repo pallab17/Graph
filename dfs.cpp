@@ -49,3 +49,34 @@ class Solution {
        
            
   }
+
+    // Function to return a list containing the DFS traversal of the graph.
+    vector<int> dfsOfGraph(int V, vector<int> mp[]) {
+        // mp[0]--> 2,3,1  
+        // mp[1]--> 0
+        // mp[2]--> 0,4
+        // mp[3]--> 0
+        // mp[4]--> 2
+        // Code here
+        unordered_map<int, vector<int>> adj;
+        for(int u=0;u<V;u++){ 
+            // u=0, V=5 , 0<5 
+            for(auto v = mp[u].begin(); v!= mp[u].end();v++){
+                // v=mp[u].begin()=mp[0].begin()=2 !mp[u].end() = 2,3,1 i.e. 1 r porer element that is a garbage element full stop . opdi cholbe as 0 based indexing v++ 
+            //   v=2
+            //   v=3
+            //   v=1
+                adj[u].push_back(*v);
+                // adj[o].push_back(*v==2) 0-->2
+                // adj[o].push_back(*v==3) 0-->3
+                // adj[o].push_back(*v==1) 0-->1
+            }
+        }
+        vector<int>result;
+        vector<bool>visited(V,false);
+        
+        DFS(adj,0,visited,result);
+        return result;
+    
+    }
+};
