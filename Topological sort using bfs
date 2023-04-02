@@ -1,2 +1,54 @@
 
 qs link - https://practice.geeksforgeeks.org/problems/topological-sort/1
+
+class Solution
+{
+	public:
+	//Function to return list containing vertices in Topological order. 
+	vector<int> topoSort(int V, vector<int> adj[]) 
+	{
+	    // code here
+	    
+	   // topological sort using bfs - kahn's algorithm
+	   
+	   
+	   // queue toiri korchi
+	   queue<int>que;
+	    
+	   // step-1 --> making the indegree array with the help of adj list
+	   vector<int>indegree(V,0);
+	   
+	   for(int u=0;u<V;u++){
+	       for(int &v : adj[u]){
+	           indegree[v]++;
+	       }
+	   }
+	   
+	   // step-2--> je node/vertice r indegree = 0 sei mal take queue te push korbo
+	   for(int i=0;i<V;i++){
+	       if(indegree[i]==0){
+	           que.push(i);
+	           
+	       }
+	   }
+	   
+	   //step-3 --> simple bfs
+	   vector<int>result;
+	   while(!que.empty()){
+	       int u = que.front();
+	       result.push_back(u);
+	       que.pop();
+	       
+	       for(int &v : adj[u]){
+	           indegree[v]--;
+	           
+	           if(indegree[v]==0){
+	               que.push(v);
+	               
+	           }
+	       }
+	   }
+	   return result;
+	   
+	}
+};
