@@ -1,1 +1,80 @@
 
+class Solution {
+  public:
+    // Function to detect cycle in a directed graph.
+    bool isCyclic(int V, vector<int> adj[]) {
+        // code here
+        // detect cycle in a directed graph using bfs 
+        // exactly bfs topological sort r code ta just count varaible use korbo
+        
+        // queue niccchi for bfs
+        queue<int>que;
+        
+        
+        // count varaible nebo jeta main part
+        int count=0;
+        
+        // indegree array take banabo
+        vector<int>indegree(V,0);
+        for(int u=0;u<V;u++){
+            for(int &v : adj[u]){
+                indegree[v]++;
+            }
+        }
+        
+        // jei node gulor indegree == 0 tader ke queue te insert korchi
+        
+        for(int i=0;i<V;i++){
+            if(indegree[i]==0){
+                que.push(i);
+                // 0 node ke push korlam
+                count++;
+                // c=1
+            }
+        }
+        
+        // simple bfs
+        
+        while(!que.empty()){
+            int u=que.front();
+            // u=0
+            // u=1
+            que.pop();
+            // 0 is popped
+            // 1 is popped
+            
+            for(int &v : adj[u]){
+                indegree[v]--;
+                // indegree of 1 becomes 0
+                // indegree of 2 becomes 0
+                
+                
+                if(indegree[v]==0){
+                    que.push(v);
+                    // 1 is pushed in queue
+                    // 2 is pushed in queue
+                    count++;
+                    // c=2
+                    // c=3
+                }
+                
+            }
+            
+            
+        }
+        
+        //   example number 2 unujai
+        // count =3 V=3
+        // return false
+        
+        if(count==V){
+            // jodi amra sob kota nodes ke visit kore queue te push korte pari tahole kono cycle nei
+            return false;
+        }
+        // jodi amra sob kota nodes ke visit na korte pari ebong queue te push nah  korte pari tahole  cycle ache
+        return true;
+        
+        
+        
+    }
+};
